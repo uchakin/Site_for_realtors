@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Flat, Report
+from .models import Flat, Report, Owner
 
 
 class FlatAdmin(admin.ModelAdmin):
@@ -17,5 +17,11 @@ class ReportAdmin(admin.ModelAdmin):
     raw_id_fields = ('report_flat', 'report_owner')
 
 
+class OwnerAdmin(admin.ModelAdmin):
+    raw_id_fields = ('owners_flats',)
+    list_display = ('name', 'pure_phone_number')
+
+
 admin.site.register(Flat, FlatAdmin)
 admin.site.register(Report, ReportAdmin)
+admin.site.register(Owner, OwnerAdmin)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from property.models import Flat, Report
+from property.models import Flat
 
 
 def format_price(value):
