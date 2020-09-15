@@ -9,7 +9,7 @@ class Flat(models.Model):
     owner_depricated = models.CharField("ФИО владельца", max_length=200)
     created_at = models.DateTimeField("Когда создано объявление", default=timezone.now, db_index=True)
 
-    new_building = models.NullBooleanField(null=True)
+    new_building = models.NullBooleanField(db_index=True, verbose_name="Новое здание")
     
     description = models.TextField("Текст объявления", blank=True)
     price = models.IntegerField("Цена квартиры", db_index=True)
@@ -26,7 +26,7 @@ class Flat(models.Model):
     active = models.BooleanField("Активно-ли объявление", db_index=True)
     construction_year = models.IntegerField("Год постройки здания", null=True, blank=True, db_index=True)
     liked_by = models.ManyToManyField(
-        User, related_name="liked_posts", verbose_name="Кто лайкнул", blank=True, db_index=True)
+        User, related_name="liked_posts", verbose_name="Кто лайкнул", blank=True)
 
     def __str__(self):
         return f"{self.town}, {self.address} ({self.price}р.)"
@@ -38,7 +38,7 @@ class Owner(models.Model):
     pure_phone_number = PhoneNumberField(
         blank=True, region="RU", db_index=True, verbose_name="Нормализованный номер владельца")
     owners_flats = models.ManyToManyField(
-        Flat, related_name="flat_owned_by", blank=True, db_index=True, verbose_name="Квартиры в собственности")
+        Flat, related_name="flat_owned_by", blank=True, verbose_name="Квартиры в собственности")
 
 
 class Report(models.Model):
