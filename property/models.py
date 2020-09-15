@@ -38,7 +38,7 @@ class Owner(models.Model):
     pure_phone_number = PhoneNumberField(
         blank=True, region="RU", db_index=True, verbose_name="Нормализованный номер владельца")
     owners_flats = models.ManyToManyField(
-        Flat, related_name="flat_owned_by", blank=True, verbose_name="Квартиры в собственности")
+        Flat, related_name="flat_owners", blank=True, verbose_name="Квартиры в собственности")
 
 
 class Report(models.Model):
