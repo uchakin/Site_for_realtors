@@ -42,6 +42,8 @@ class Owner(models.Model):
 
 
 class Report(models.Model):
-    report_owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Кто жаловался")
-    report_flat = models.ForeignKey(Flat, on_delete=models.CASCADE, null=True, verbose_name="Квартира, на которую жаловались")
+    report_owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="Кто жаловался", related_name='report_owners')
+    report_flat = models.ForeignKey(
+        Flat, on_delete=models.CASCADE, null=True, verbose_name="Квартира, на которую жаловались", related_name='report_flats')
     report_description = models.TextField(max_length=400, blank=True, verbose_name="Текст жалобы")
